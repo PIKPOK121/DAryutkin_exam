@@ -1,27 +1,40 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@TestMethodOrder(OrderAnnotation.class)
 public class Scen3 {
 
     TestMethods api = new TestMethods();
 
     @Test
-    void filters() {
+    @Order(1)
+    void filterGenre() {
+        Map<String, Object> p = new HashMap<>();
+        p.put("genre", "Classic");
 
-        Map<String, Object> genre = new HashMap<>();
-        genre.put("genre", "Classic");
-        api.getAllBooks(genre);
+        api.getAllBooks(p);
+    }
 
-        Map<String, Object> page = new HashMap<>();
-        page.put("page", 0);
-        page.put("size", 5);
-        api.getAllBooks(page);
+    @Test
+    @Order(2)
+    void pagination() {
+        Map<String, Object> p = new HashMap<>();
+        p.put("page", 0);
+        p.put("size", 5);
 
-        Map<String, Object> price = new HashMap<>();
-        price.put("minPrice", 100);
-        price.put("maxPrice", 600);
-        api.getAllBooks(price);
+        api.getAllBooks(p);
+    }
+
+    @Test
+    @Order(3)
+    void filterPrice() {
+        Map<String, Object> p = new HashMap<>();
+        p.put("minPrice", 100);
+        p.put("maxPrice", 600);
+
+        api.getAllBooks(p);
     }
 }
