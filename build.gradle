@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.jayway.jsonpath:json-path:2.8.0'
     // Hamcrest
     testImplementation 'org.hamcrest:hamcrest-all:1.3'
+    testImplementation 'org.junit.platform:junit-platform-suite:1.10.2'
 }
 
 // Получаем переменную, если её нет то Null
